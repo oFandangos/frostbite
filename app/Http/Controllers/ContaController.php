@@ -15,7 +15,6 @@ class ContaController extends Controller
 {
     
     public function index(Request $request, User $user, Produto $produtos){
-
         if(Gate::allows('isuser', $user)){
             $auth = Auth::user();
             $user = User::select('*')->where('id','=', $auth->id)->first();
@@ -24,6 +23,14 @@ class ContaController extends Controller
             request()->session()->flash('alert-danger','Usuário sem permissão');
             return redirect('/');
         }
+    }
+
+    public function cadastrarView(){
+        return view('conta.cadastrar');
+    }
+
+    public function store(){
+        dd('po');
     }
 
     public function recuperarSenhaView(){

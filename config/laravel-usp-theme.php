@@ -46,7 +46,7 @@ $submenu4 = [
 
 $submenu5 = [
     [
-    'text' => 'Minha conta',
+    'text' => 'Acessar',
     'url' => "conta/"
     ]
 ];
@@ -67,14 +67,14 @@ $menu = [
         'can' => '',
     ],
     [
-        'text' => 'Admin',
-        'submenu' => $submenu4,
-        'can' => '',
-    ],
-    [
         'text' => 'Minha Conta',
         'submenu' => $submenu5,
-        'can' => '',
+        'can' => 'isuser',
+    ],
+    [
+        'text' => 'Administração',
+        'submenu' => $submenu4,
+        'can' => 'is_admin',
     ],
     [
         'text' => 'Está logado',

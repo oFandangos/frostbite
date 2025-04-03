@@ -12,18 +12,10 @@ class AdminProdController extends Controller
     public function index(Produto $produtos, User $users){
         if(Gate::allows('create-user')){
         $produtos = Produto::join('users','produtos.user_id','=','users.id')
-        ->select('produtos.*', 'users.email')
-        ->where('status','like','%em_analise%')
-        ->get();
-
-        $produtosReprov = Produto::join('users','produtos.user_id','=','users.id')
-        ->select('produtos.*','users.email')
-        ->where('status','like','%reprov%')
-        ->get();
-
+        ->select('produtos.*', 'users.email');
+        
         return view('user.adm.produtos', [
-            'produtos' => $produtos,
-            'produtosReprov' => $produtosReprov,
+            'produtos' => $produtos->where('status','em_analise')->get(),
             'users' => $users
         ]);
         }else{

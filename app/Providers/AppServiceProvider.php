@@ -48,6 +48,20 @@ class AppServiceProvider extends ServiceProvider
             return $user->id == $auth;
         });
 
+        Gate::define('is_admin', function (User $user){
+            if(Auth::user()){
+                $admins = $user::where('is_admin',1)
+                ->where('codpes',Auth::user()->codpes)
+                ->get();
+                foreach($admins as $admin){
+                    #dd('vc é adm');
+                    return $admin->codpes == Auth::user()->codpes;
+                }
+            }
+            #dd('vc num é adm');
+            return false;
+        });
+
         Blade::directive('bootstrap', function () {
             return <<<'HTML'
             <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">

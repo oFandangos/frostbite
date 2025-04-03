@@ -10,6 +10,7 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\AdminProdController;
 use App\Http\Controllers\AdminAvisoController;
 use App\Http\Controllers\ContaController;
+use App\Http\Middleware\AuthUser;
 
 Route::get('/',[IndexController::class,'index']);
 
@@ -24,14 +25,17 @@ Route::delete('/cat/{category}',[CategoryController::class,'destroy']);
 #Login
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
-Route::get('/', [IndexController::class,'index']);
 Route::post('/logout', [LoginController::class,'logout']);
 
-Route::get('/conta/', [ContaController::class, 'index']);
+Route::get('/conta', [ContaController::class, 'index']);
 Route::get('/conta/edit', [ContaController::class, 'edit']);
 Route::put('/conta/edit/', [ContaController::class, 'update']);
 Route::delete('/conta/delete/{conta}', [ContaController::class, 'destroy']);
 
+
+Route::get('/cadastrar',[ContaController::class, 'cadastrarView']);
+Route::post('/store',[ContaController::class, 'store']);
+#recuperar senha do usuário
 Route::get('/recuperar-senha', [ContaController::class, 'recuperarSenhaView']);
 Route::post('/recuperar', [ContaController::class, 'sendMail']);
 
