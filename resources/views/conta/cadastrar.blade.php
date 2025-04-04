@@ -11,19 +11,23 @@
                         @csrf
                         <div class="row">
                             <label>E-mail</label>
-                            <input type="email" class="input" name="email" value="{{old('email')}}">
+                            <input type="email" class="input" name="email" value="{{old('email')}}" placeholder="Ex.: nome@email.com">
                         </div>
                         <div class="row">
                             <label>Número de usuário</label>
-                            <input type="text" class="input" name="codpes" value="{{old('codpes')}}">
+                            <input type="text" class="input" name="codpes" value="{{old('codpes')}}" placeholder="Ex.: 123456789">
                         </div>
                         <div class="row">
                             <label>Nome de usuário</label>
-                            <input type="text" class="input" name="name" value="{{old('name')}}">
+                            <input type="text" class="input" name="name" value="{{old('name')}}" placeholder="Insira seu nome de usuário">
                         </div>
                         <div class="row">
                             <label>Senha</label>
-                            <input class="input" name="password" type="password" value="{{old('password')}}">
+                            <input class="input" name="password" type="password" value="{{old('password')}}" placeholder="Insira sua senha">
+                        </div>
+                        <div class="row">
+                            <label>Confirme sua senha</label>
+                            <input class="input" name="password_confirmation" type="password" value="{{old('password_confirmation')}}" placeholder="Insira sua senha novamente">
                         </div>
                         <div class="row">
                             <div class="col">
@@ -52,7 +56,7 @@
     }
     #letter{
         font-weight:normal;
-        font-size:8px;
+        font-size:12px;
     }
     .checkbox{
         width:12px;
@@ -88,7 +92,10 @@
     .cadastro:hover{
         background-color:transparent;
         color:rgb(11, 135, 19);
+    }
 
+    .cadastro:focus{
+        cursor:not-allowed;
     }
 
 </style>

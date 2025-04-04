@@ -9,8 +9,8 @@
                 <div class="card-body">
                     <form method="post" action="/login">
                         @csrf
-                        <label for="name">Número de usuário</label>
-                        <input type="text" name="codpes" class="input" value="{{old('codpes')}}">
+                        <label for="name">E-mail</label>
+                        <input type="text" name="email" class="input" value="{{old('email')}}">
                         <label for="password">Senha</label>
                         <input type="password" name="password" name="password" class="input">
                         <div class="row">
@@ -21,7 +21,7 @@
                                 <a id="rec" href="cadastrar">Cadastrar-se</a>
                             </div>
                         </div>
-                        <button type="submit" class="enviar" style="margin-top:10px; width:100%; padding:10px;">Enviar</button>                        
+                        <button type="submit" class="enviar" style="margin-top:10px; width:100%; padding:10px;">Logar</button>                        
                     </form>
                 </div>
             </div>
@@ -42,6 +42,7 @@
         border:1px solid rgb(10, 179, 38);
         border-radius:2px;
         color:white;
+        transition:.2s;
     }
 
     .enviar:hover{
@@ -52,16 +53,6 @@
         animation-timing-function:ease;
         animation-duration:.1s;
         color:rgb(10, 179, 38);
-    }
-    
-
-    @keyframes color{
-        from{
-            background-color:rgb(10, 179, 38);
-        }
-        to{
-            background-color:white;
-        }
     }
 
     .card{

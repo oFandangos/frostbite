@@ -29,14 +29,29 @@ class ContaController extends Controller
         return view('conta.cadastrar');
     }
 
-    public function store(){
-        dd('po');
+    public function store(ContaRequest $request){
+        $validated = $request->validated();
+        $validated['password'] = bcrypt($request['password']);
+        $user = User::create($validated);
+        Mail::to($request->email)->send(new SendConfirmationMail($user));
+        request()->session()->flash('alert-success','Usuário cadastrado com sucesso. Faça a confirmação por e-mail');
+        return redirect()->back();
+    }
+
+    public function emailConfirmado(Request $request){
+        
+        $user = User::where('email_verified_at', null)->first(); //pegar aquele do email
+        Auth::login($user);
+        $user->email_verified_at = now();
+        $user->save();
+        request()->session()->flash('alert-success','Email confirmado com sucesso');
+        return redirect('/');
     }
 
     public function recuperarSenhaView(){
         return view('conta.recuperar-senha');
     }
-
+    //envia email para recuperação de senha
     public function sendMail(Request $request){
         $user = User::where('email', $request->email)->first();
         if($user){

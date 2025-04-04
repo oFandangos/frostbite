@@ -11,6 +11,8 @@ use App\Http\Controllers\AdminProdController;
 use App\Http\Controllers\AdminAvisoController;
 use App\Http\Controllers\ContaController;
 use App\Http\Middleware\AuthUser;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/',[IndexController::class,'index']);
 
@@ -35,7 +37,14 @@ Route::delete('/conta/delete/{conta}', [ContaController::class, 'destroy']);
 
 Route::get('/cadastrar',[ContaController::class, 'cadastrarView']);
 Route::post('/store',[ContaController::class, 'store']);
-#recuperar senha do usuário
+
+Route::get('/email_verificado/{id}', [ContaController::class, 'emailConfirmado']);
+
+Route::get('/teste', function () {
+    return view('emails.confirmar_email');
+});
+
+// recuperar senha do usuário
 Route::get('/recuperar-senha', [ContaController::class, 'recuperarSenhaView']);
 Route::post('/recuperar', [ContaController::class, 'sendMail']);
 

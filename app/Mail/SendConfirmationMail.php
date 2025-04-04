@@ -8,21 +8,19 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
-class sendPasswordMail extends Mailable
+class SendConfirmationMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $user;
-
+    private $email;
     /**
      * Create a new message instance.
      */
-    public function __construct(User $user)
+    public function __construct(User $email)
     {
-        $this->user = $user;
+        $this->email = $email;
     }
 
     /**
@@ -31,7 +29,7 @@ class sendPasswordMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Recuperação de senha',
+            subject: 'Confirme seu email',
         );
     }
 
@@ -41,8 +39,18 @@ class sendPasswordMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.recuperacao_senha',
-            with: ['user' => $this->user]
+            view: 'emails.confirmar_email',
+            with: ['email' => $this->email]
         );
+    }
+
+    /**
+     * Get the attachments for the message.
+     *
+     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
+     */
+    public function attachments(): array
+    {
+        return [];
     }
 }
