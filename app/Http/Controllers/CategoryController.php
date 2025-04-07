@@ -10,22 +10,13 @@ class CategoryController extends Controller
 {
     public function index(){
         $categories = Category::all();
-        if(Gate::allows('category')){
-            return view('cat.index', ['categories' => $categories]);
-        }else{
-            request()->session()->flash('alert-danger','Usuário sem permissão');
-            return redirect('/');
-        }
+        Gate::authorize('category');
+        return view('cat.index', ['categories' => $categories]);
     }
     
     public function create(Category $category){
-        if(Gate::allows('create-user')){
-            return view('cat.create');
-            return redirect('/cat');
-        }else{
-            request()->session()->flash('alert-danger','Usuário sem permissão');
-            return redirect('/');
-        }
+        Gate::authorize('is_admin');
+        return view('cat.create');
     }
 
     public function store(Request $request, Category $category){
@@ -36,13 +27,8 @@ class CategoryController extends Controller
     }
 
     public function edit(Category $category){
-        if(Gate::allows('create-user')){
-            return view('cat.edit', ['category' => $category]);
-            return redirect('/cat');
-        }else{
-            request()->session()->flash('alert-danger','Usuário sem permissão');
-            return redirect('/');
-        }
+        Gate::authorize('is_admin');
+        return view('cat.edit', ['category' => $category]);
     }
 
     public function update(Request $request, Category $category){
@@ -52,12 +38,8 @@ class CategoryController extends Controller
     }
 
     public function destroy(Category $category){
-        if(Gate::allows('create-user')){
-            $category->delete();
-            return redirect('/cat');
-        }else{
-            request()->session()->flash('alert-danger','Usuário sem permissão');
-            return redirect('/');
-        }
+        Gate::authorize('is_admin');
+        $category->delete();
+        return redirect('/cat');
     }
 }

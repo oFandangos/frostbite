@@ -27,6 +27,7 @@ class ContaRequest extends FormRequest
             'name' => 'required',
             'password' => 'required|min:4|confirmed',
             'password_confirmation' => 'required|min:4',
+            'remember_token' => 'nullable',
         ];
         return $rules;
     }

@@ -25,14 +25,9 @@ class ProdutoController extends Controller
     }
         
     public function create(Produto $produto, Category $categories, User $users){
-        $userId = Auth::id();
-
-        if(Gate::allows('create', $produto)){
+            $userId = Auth::id();
+            Gate::authorize('create', $produto);
             return view('prod.create')->with(['produto' => $produto, 'categories' => $categories, 'users' => $users, 'userId' => $userId]);
-        }else{
-            request()->session()->flash('alert-danger','Usuário sem permissão. Logue-se para poder cadastrar um produto');
-            return redirect('/');
-        };
     }
 
     public function store(ProdutoRequest $request, Produto $produto, Category $category, User $user){
@@ -48,14 +43,9 @@ class ProdutoController extends Controller
 
     public function edit(Produto $produto, User $user, Category $categories){
 
-        if(Gate::allows('edit', $produto)){
+        Gate::authorize('edit', $produto);
 
         return view('prod.edit', ['produto' => $produto, 'categories' => $categories]);
-
-        }else{
-            request()->session()->flash('alert-danger','Usuário sem permissão');
-            return redirect('/');
-        }
     }
 
     public function update(ProdutoRequest $request, Produto $produto){

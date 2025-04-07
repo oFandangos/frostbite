@@ -10,7 +10,7 @@ use App\Models\Produto;
 class AdminProdController extends Controller
 {
     public function index(Produto $produtos, User $users){
-        if(Gate::allows('create-user')){
+        Gate::authorize('is_admin');
         $produtos = Produto::join('users','produtos.user_id','=','users.id')
         ->select('produtos.*', 'users.email');
         
@@ -18,10 +18,6 @@ class AdminProdController extends Controller
             'produtos' => $produtos->where('status','em_analise')->get(),
             'users' => $users
         ]);
-        }else{
-            request()->session()->flash('alert-danger','Usuário sem permissão');
-            return redirect('/');
-        }
     }
 
     public function update(Request $request, Produto $produto){

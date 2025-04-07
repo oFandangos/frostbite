@@ -27,6 +27,24 @@
         </div>
     </div>
 </div>
+
+<div class="container">
+    <div class="row justify-content-center" style="margin-top:20px;">
+        <div class="col-8">
+            <div class="card">
+                <div class="card-body">
+                    <label><b>Comente</b></label>
+                    <form method="post" action="produto/comentar/{{$produto->id}}">
+                        @csrf
+                        <textarea class="form-control" name="comentario" value="{{ old('comentario') }}"></textarea>
+                        <button class="btn btn-success">Enviar comentário</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 @foreach($produto->files as $file)
 <img style="width:100px;" src="/files/{{$file->id}}">
 @endforeach

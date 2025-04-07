@@ -38,11 +38,10 @@ Route::delete('/conta/delete/{conta}', [ContaController::class, 'destroy']);
 Route::get('/cadastrar',[ContaController::class, 'cadastrarView']);
 Route::post('/store',[ContaController::class, 'store']);
 
-Route::get('/email_verificado/{id}', [ContaController::class, 'emailConfirmado']);
+Route::get('/email_verificado/{id}', [ContaController::class, 'emailConfirmado'])
+->name('email.confirmado');
 
-Route::get('/teste', function () {
-    return view('emails.confirmar_email');
-});
+Route::get('/teste/{id}/{hash}', [ContaController::class, 'confirmarEmailView'])->name('teste'); //excluir
 
 // recuperar senha do usuário
 Route::get('/recuperar-senha', [ContaController::class, 'recuperarSenhaView']);
@@ -55,6 +54,9 @@ Route::get('/produto/show/{produto}', [ProdutoController::class, 'show']);
 Route::get('/produto/edit/{produto}',[ProdutoController::class,'edit']);
 Route::put('/produto/{produto}/edit',[ProdutoController::class,'update']);
 Route::delete('/produto/{produto}',[ProdutoController::class,'destroy']);
+
+
+Route::post('/produto/comentar/{produto}', [ProdutoController::class, 'comentario']);
 
 #criacao de usuario por um admin
 Route::get('/user', [UserController::class,'index']);

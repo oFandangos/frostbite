@@ -43,9 +43,19 @@ class AppServiceProvider extends ServiceProvider
             return $user->is_admin == true; 
         });
 
-        Gate::define('isuser', function (User $user){
-            $auth = Auth::id();
-            return $user->id == $auth;
+        Gate::define('is_user', function (User $user){
+            if(Auth::check()){
+                $auth  = Auth::user();
+                if($auth->email_verified_at != null){
+                    return 'email';
+                }else{
+                    auth()->logout();
+                    request()->session()->flash('alert-success','Deslogado com sucesso');
+                }
+            }else{
+                dd('o');
+                return redirect('/')->with('alert-danger','Usuário sem permissão');
+            }
         });
 
         Gate::define('is_admin', function (User $user){

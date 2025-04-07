@@ -38,4 +38,9 @@ class User extends Authenticatable implements MustVerifyEmail
     public function avisos(){
         return $this->hasMany('App\Models\Aviso');
     }
+
+    public function comentarios(){
+        return $this->hasMany('App\Models\Comentario', 'comentario_usuario_id');
+    }
+
 }

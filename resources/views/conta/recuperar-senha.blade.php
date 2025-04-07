@@ -9,6 +9,7 @@
                 <div class="card-body">
                     <form method="post" action="/recuperar">
                         @csrf
+                        @method('post')
                         <label for="email">Email</label>
                         <input type="email" name="email" class="input" value="{{old('email')}}" placeholder="Insira seu email">
                         <button type="submit" class="enviar" style="margin-top:10px; width:100%; padding:10px;">Enviar</button>                        

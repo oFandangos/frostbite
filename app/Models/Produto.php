@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
 use App\Models\User;
+use App\Models\Comentario;
 
 class Produto extends Model
 {
@@ -31,5 +32,8 @@ class Produto extends Model
       return $this->hasMany('App\Models\File');
      }
 
+     public function comentarios(){
+      return $this->hasMany(Comentario::class);
+     }
 
 }

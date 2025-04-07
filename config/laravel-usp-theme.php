@@ -69,7 +69,7 @@ $menu = [
     [
         'text' => 'Minha Conta',
         'submenu' => $submenu5,
-        'can' => 'isuser',
+        'can' => 'is_user',
     ],
     [
         'text' => 'Administração',

@@ -7,10 +7,12 @@ use App\Models\Aviso;
 use App\Models\User;
 use App\Models\Produto;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class AdminAvisoController extends Controller
 {
     public function create(Aviso $aviso, User $user){
+        Gate::authorize('is_admin');
         $user = Auth::user();
         return view('user.adm.avisos', ['aviso' => $aviso, 'user' => $user ]); //user = criador do aviso
     }

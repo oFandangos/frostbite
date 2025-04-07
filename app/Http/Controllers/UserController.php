@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     public function index(Request $request, User $users){
-        if(Gate::allows('create-user')){
+        Gate::authorize('is_admin');
             $query = User::orderBy('name','desc');
             if($request->search){
                 $query->where(function($query) use ($request){
@@ -25,20 +25,12 @@ class UserController extends Controller
         return view('user.index', [
             'users' => $users,
         ]);
-        }else{
-            request()->session()->flash('alert-danger','Usuário sem permissão');
-            return redirect('/');
-        }
     }
 
     //formulario de cadastro
     public function edit(Request $request, User $user){
-        if(Gate::allows('create-user')){
-            return view ('user.create', ['user' => $user]);
-        }else{
-            request()->session()->flash('alert-danger','Usuário sem permissão');
-            return redirect('/');
-        }
+        Gate::authorize('is_admin');
+        return view ('user.create', ['user' => $user]);
     }
 
     //atualização de adm
@@ -68,13 +60,8 @@ class UserController extends Controller
     }
 
     public function banir(Request $request, User $user){
-
-        if(Gate::allows('create-user')){
-            return view('user.banir', ['user' => $user]);
-        }else{
-            request()->session()->flash('alert-danger','Usuário sem permissão');
-            return redirect('/');
-        }
+        Gate::authorize('is_admin');
+        return view('user.banir', ['user' => $user]);
 
     }
 
