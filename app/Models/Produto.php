@@ -33,7 +33,7 @@ class Produto extends Model
      }
 
      public function comentarios(){
-      return $this->hasMany(Comentario::class);
+      return $this->hasMany('App\Models\Comentario', 'produto_id');
      }
 
 }

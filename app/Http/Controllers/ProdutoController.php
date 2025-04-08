@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produto;
+use App\Models\Comentario;
 use App\Models\Category;
 use App\Models\User;
 use App\Http\Requests\ProdutoRequest;
@@ -16,12 +17,15 @@ class ProdutoController extends Controller
 {
     public function show(Produto $produto){
         $autor = Auth::user();
-
         $user = User::where('id','=', $produto->user_id)
         ->select('users.email', 'users.id')
         ->first();
 
-        return view('prod.show', ['produto' => $produto, 'autor' => $autor, 'user' => $user]);
+        $comentario = Comentario::select('comentarios.id','comentarios.created_at','comentarios.comentario','comentarios.comentario_usuario_id')->where('produto_id', '=', $produto->id)
+        ->join('users', 'comentarios.comentario_usuario_id', '=', 'users.id')
+        ->get();
+
+        return view('prod.show', ['produto' => $produto, 'autor' => $autor, 'user' => $user, 'comentarios' => $comentario]);
     }
         
     public function create(Produto $produto, Category $categories, User $users){

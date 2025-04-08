@@ -10,6 +10,7 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\AdminProdController;
 use App\Http\Controllers\AdminAvisoController;
 use App\Http\Controllers\ContaController;
+use App\Http\Controllers\ComentarioController;
 use App\Http\Middleware\AuthUser;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Auth;
@@ -56,7 +57,8 @@ Route::put('/produto/{produto}/edit',[ProdutoController::class,'update']);
 Route::delete('/produto/{produto}',[ProdutoController::class,'destroy']);
 
 
-Route::post('/produto/comentar/{produto}', [ProdutoController::class, 'comentario']);
+Route::post('/produto/comentar/{produto}', [ComentarioController::class, 'store']);
+Route::delete('/produto/comentar/delete/{comentario}', [ComentarioController::class, 'destroy']);
 
 #criacao de usuario por um admin
 Route::get('/user', [UserController::class,'index']);
