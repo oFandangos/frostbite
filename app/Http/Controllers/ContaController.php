@@ -19,16 +19,9 @@ class ContaController extends Controller
     
     public function index(Request $request, User $user){
         Gate::authorize('is_user', $user);
-            $auth = Auth::user();
-            $user = User::select('*')->where('id','=', $auth->id)->first();
-            return view('conta.index', compact('user', 'auth'));
-            /*
-        }else{
-            request()->session()->flash('alert-danger','Usuário sem permissão');
-            return redirect('/');
-        }
-            */
-        
+        $auth = Auth::user();
+        $user = User::select('*')->where('id','=', $auth->id)->first();
+        return view('conta.index', compact('user', 'auth'));
     }
 
     public function cadastrarView(){
@@ -63,6 +56,20 @@ class ContaController extends Controller
         return redirect('/');
     }
 
+    public function edit(User $user){
+        return view('conta.edit', compact('user'));
+    }
+
+    public function update(ContaRequest $request, User $user){
+        $validated = $request->validated();
+        if($validated){
+            $validated['password'] = bcrypt($request['password']);
+            $user->update($validated);
+        }
+        request()->session()->flash('alert-success','Dados atualizados com sucesso');
+        return redirect()->back();
+    }
+
     public function recuperarSenhaView(){
         return view('conta.recuperar-senha');
     }
@@ -79,6 +86,11 @@ class ContaController extends Controller
             request()->session()->flash('alert-danger','Email não encontrado');
             return redirect('/recuperar-senha');
         }
+    }
+
+    public function produtosUser(User $user){
+        $produtos = Produto::where('user_id', $user->id)->get();
+        return view('index', (['produtos' => $produtos, 'user' => $user, 'categories' => \App\Models\Category::class]));
     }
 
 }

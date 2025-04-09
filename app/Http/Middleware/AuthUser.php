@@ -16,10 +16,11 @@ class AuthUser
      */
     public function handle(Request $request, Closure $next): Response
     {
-        
+        /*
         if (!Auth::check() && !$request->is(['login', 'recuperar-senha', 'cadastrar','store', 'teste','email_verificado/*'])) {
             return redirect('/login');
         }
+        */
         return $next($request);
     }
 }

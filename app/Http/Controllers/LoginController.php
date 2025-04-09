@@ -27,7 +27,7 @@ use AuthenticatesUsers;
 
     public function username(){
         $user = User::where('email',request()->email)->first();
-        if($user->email_verified_at != null){
+        if($user && $user->email_verified_at != null){
             return 'email';
         }
         request()->session()->flash('alert-danger','E-mail Não autenticado');

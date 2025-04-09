@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ContaRequest extends FormRequest
 {
@@ -22,12 +23,21 @@ class ContaRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'email' => 'required|email|unique:users,email',
-            'codpes' => 'required|unique:users,codpes',
+            #'email' => 'required|email|unique:users,email',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore($this->route('user')),
+            ],
+            'codpes' => [
+                'required',
+                Rule::unique('users')->ignore($this->route('user')),
+            ],
             'name' => 'required',
-            'password' => 'required|min:4|confirmed',
-            'password_confirmation' => 'required|min:4',
+            'password' => 'required|min:4',
+            'password_confirmation' => 'required|min:4|same:password',
             'remember_token' => 'nullable',
+            'newsletters' => 'nullable|boolean',
         ];
         return $rules;
     }

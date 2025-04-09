@@ -12,6 +12,8 @@ minha conta
                     <p>{{$auth->email}}</p>
                     <p>{{$auth->name}}</p>
                     <p>{{$auth->codpes}}</p>
+                    <a href="/conta/edit/{{$auth->id}}">Editar conta</a><br/>
+                    <a href="/conta/produtos/{{$auth->id}}">Meus produtos</a>
                 </div>
             </div>
         </div>

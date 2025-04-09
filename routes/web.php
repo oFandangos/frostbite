@@ -8,9 +8,9 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\AdminProdController;
-use App\Http\Controllers\AdminAvisoController;
 use App\Http\Controllers\ContaController;
 use App\Http\Controllers\ComentarioController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Middleware\AuthUser;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Auth;
@@ -31,10 +31,10 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class,'logout']);
 
 Route::get('/conta', [ContaController::class, 'index']);
-Route::get('/conta/edit', [ContaController::class, 'edit']);
-Route::put('/conta/edit/', [ContaController::class, 'update']);
-Route::delete('/conta/delete/{conta}', [ContaController::class, 'destroy']);
-
+Route::get('/conta/edit/{user}', [ContaController::class, 'edit']);
+Route::put('/conta/{user}/', [ContaController::class, 'update']);
+Route::delete('/conta/delete/{user}', [ContaController::class, 'destroy']);
+Route::get('/conta/produtos/{user}', [ContaController::class, 'produtosUser']);
 
 Route::get('/cadastrar',[ContaController::class, 'cadastrarView']);
 Route::post('/store',[ContaController::class, 'store']);
@@ -68,9 +68,8 @@ Route::get('/adm/banir/{user}', [UserController::class, 'banir']);
 Route::put('/adm/banido/{user}', [UserController::class,'delete']);
 
 #avisos
-Route::get('/adm/avisos', [AdminAvisoController::class,'create']);
-Route::post('/adm/avisos/create', [AdminAvisoController::class,'store']);
-Route::delete('/adm/avisos/delete/{aviso}', [AdminAvisoController::class,'destroy']);
+Route::get('/newsletter/create', [NewsletterController::class, 'create']);
+Route::post('/newsletter', [NewsletterController::class, 'store']);
 
 #aprovar produtos
 Route::get('/adm/prod-listar', [AdminProdController::class, 'index']); //form

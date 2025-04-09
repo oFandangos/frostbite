@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use Carbon\Carbon;
 
-class Aviso extends Model
+class Newsletter extends Model
 {
     use HasFactory;
 

@@ -31,8 +31,8 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <input type="checkbox" class="checkbox" value="1">
-                                <label id="letter" >Quero receber letters por email *-*</label>
+                                <input type="checkbox" class="checkbox" name="newsletters" value="1">
+                                <label id="letter">Quero receber newsletters por email *-*</label>
                             </div>
                         </div>
                         <div class="row">

@@ -7,14 +7,13 @@ use Illuminate\Http\Request;
 use App\Models\Produto;
 use App\Models\Category;
 use App\Models\User;
-use App\Models\Aviso;
 use Illuminate\Support\Facades\Http;
 
 class IndexController extends Controller
 {
 
     
-    public function index(Request $request, User $users, Category $categories){
+    public function index(Request $request, Category $categories){
         $apiKey = env('API_KEY');
         $city = 'São Paulo,br';
         $temperatura = Http::get('https://api.openweathermap.org/data/2.5/weather?q='.$city.'&APPID='.$apiKey.'&units=metric');
@@ -36,12 +35,9 @@ class IndexController extends Controller
             });
         }
         $produtos = $query->get();
-        $avisos = Aviso::orderBy('created_at','desc')->paginate(3);
 
         return view('index', [
             'produtos' => $produtos,
-            'users' => $users, 
-            'avisos' => $avisos,
             'categories' => $categories,
             'temperatura' => $temperatura,
             'icon' => $icon

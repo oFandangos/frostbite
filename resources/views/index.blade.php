@@ -2,6 +2,7 @@
 @extends('styles.app')
 @section('content')
 
+@if(request()->url() == url('/'))
 <form action="/" method="get">
     <div class="row">
       <div class="col-2" style="margin-right:10px;">
@@ -23,23 +24,30 @@
       </div>
     </div>
   </form>
-
+@endif
 
 <div class="container-fluid">
   <div class="row justify-content-center">
-    @foreach($produtos as $produto)
+    @forelse($produtos as $produto)
     <div class="col-3">
       <div class="card" style="margin-bottom:32px;">
         <div class="card-body">
           <h5 class="card-title">{{$produto->nome_prod}}</h5>
           <p class="card-text">Preço: R$ <span class="num">{{$produto->valor_prod}}</span></p>
-          <p class="card-text">Categoria: {{$produto->nome_cat}}</p>
+          <p class="card-text">Categoria: {{$produto->category->nome_cat}}</p>
           <p class="card-text">Descrição: {{$produto->descricao}}</p>
+          <p class="card-text">Autor: <a href="">{{$produto->user->email}}</a></p>
           <a href="produto/show/{{$produto->id}}" class="btn btn-primary">Comprar</a>
         </div>
       </div>
     </div>
-    @endforeach
+
+    @empty
+
+    <p class="text-danger">Es tut mir leid! Es gibt keine Produkte für Sie.</p>
+    <a href="/conta/">Zurück zum personalprofil</a>
+
+    @endforelse
   </div>
 </div>
 
