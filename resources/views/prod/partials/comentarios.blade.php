@@ -26,9 +26,9 @@
                     <div class="row">
                         <div class="col-12">
                             <b>{{$comentario->user->name}}</b><i class="text-muted"> {{date('d/m/Y',strtotime($comentario->created_at))}}</i><br/>
-                                {{$comentario->comentario}}
+                                <p id="paragrafo" class="paragrafo" value="{{$comentario->id}}">{{$comentario->comentario}}</p>
                                 @if(auth()->check() && $comentario->comentario_usuario_id == auth()->user()->id)
-                                <form method="post" action="/produto/comentar/delete/{{$comentario->id}}">
+                                    <form method="post" action="/produto/comentar/delete/{{$comentario->id}}">
                                     @method('delete')
                                     @csrf
                                     <button
@@ -37,8 +37,16 @@
                                     onclick="return confirm('Tem certeza que deseja excluir?');"
                                     style="margin-top:8px;">
                                     <i class="bi bi-trash-fill"></i>
-                                </button>
-                            </form>
+                                    </button>
+                                    </form>
+                                    
+                                    <button 
+                                    class="btn btn-primary"
+                                    id="edit" 
+                                    value="{{$comentario->id}}" 
+                                    name="editar">
+                                    <i class="fas fa-pen"></i>
+                                    </button>
                             @endif
                             @if($index < $comentarios->count()-1)
                             <hr/>
@@ -56,3 +64,34 @@
         </div>
     </div>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+        let input = document.createElement('input');
+        input.className = 'form-control';
+        input.type = 'text';
+
+    $('button[name="editar"]').on('click', function(){ 
+        let botao = $(this); // Pega o botão clicado
+        let valorBotao = botao.val(); // Obtém o valor do botão
+        let paragrafo = botao.closest('.row').find('p.paragrafo');
+        
+        let submit = document.createElement('button');
+        submit.type = 'submit';
+        
+        let textoParagrafo = paragrafo.text();
+        input.value = textoParagrafo;
+        
+        let formularioAction = `/produto/show/comentario/${valorBotao}`;
+
+        let html = `
+        <form method="post" action="${formularioAction}">
+            @csrf
+            @method("put")
+            <textarea name="comentario" class="form-control" value="${textoParagrafo}">${textoParagrafo}</textarea>
+            <button type="submit" class="btn btn-success" name="submit" value="${valorBotao}" style="margin-top:8px;">Alterar</button>
+        </form>
+        `;
+        paragrafo.replaceWith(html);
+    });
+});
+</script>

@@ -33,9 +33,9 @@ class NewsletterController extends Controller
         ->get();
         foreach($destinatarios as $destinatario){
             //passar pra algum cron...
-            #Mail::to($destinatario->email)->queue(new SendNewsletterMail($newsletter));
+            Mail::to($destinatario->email)->send(new SendNewsletterMail($newsletter));
+            sleep(2);
         }
-        Mail::to('eu@gmail.com')->queue(new SendNewsletterMail(['titulo' => 'oi', 'text' => 'oie']));
         
         request()->session()->flash('alert-success','Newsletter enviado com sucesso');
         return redirect('/user');

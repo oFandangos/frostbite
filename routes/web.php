@@ -14,8 +14,20 @@ use App\Http\Controllers\NewsletterController;
 use App\Http\Middleware\AuthUser;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use App\Models\Comentario;
 
 Route::get('/',[IndexController::class,'index']);
+
+Route::put('/produto/show/comentario/{valor}', function(Request $request, Comentario $comentario){ //mandar para um controller
+    
+    $comentario = Comentario::where('id',$request->submit)
+    ->where('comentario_usuario_id',auth()->user()->id)
+    ->first();
+    $comentario->comentario = $request->comentario;
+    $comentario->update();
+    return redirect()->back()->with('alert-success','Mensagem alterada com sucesso');
+});
 
 #categorias
 Route::get('/cat',[CategoryController::class,'index']);
