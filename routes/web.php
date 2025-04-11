@@ -19,16 +19,6 @@ use App\Models\Comentario;
 
 Route::get('/',[IndexController::class,'index']);
 
-Route::put('/produto/show/comentario/{valor}', function(Request $request, Comentario $comentario){ //mandar para um controller
-    
-    $comentario = Comentario::where('id',$request->submit)
-    ->where('comentario_usuario_id',auth()->user()->id)
-    ->first();
-    $comentario->comentario = $request->comentario;
-    $comentario->update();
-    return redirect()->back()->with('alert-success','Mensagem alterada com sucesso');
-});
-
 #categorias
 Route::get('/cat',[CategoryController::class,'index']);
 Route::get('/cat/create',[CategoryController::class,'create']);
@@ -70,6 +60,7 @@ Route::delete('/produto/{produto}',[ProdutoController::class,'destroy']);
 
 
 Route::post('/produto/comentar/{produto}', [ComentarioController::class, 'store']);
+Route::put('/produto/show/comentario/{valor}', [ComentarioController::class, 'update']);
 Route::delete('/produto/comentar/delete/{comentario}', [ComentarioController::class, 'destroy']);
 
 #criacao de usuario por um admin

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Comentario;
 use App\Models\Produto;
+use App\Http\Requests\ComentarioRequest;
 
 class ComentarioController extends Controller
 {
@@ -19,10 +20,26 @@ class ComentarioController extends Controller
         return redirect()->back()->with('success', 'Comentário adicionado com sucesso!');
     }
 
+    public function update(ComentarioRequest $request, Comentario $comentario){
+        $comentario = Comentario::where('id',$request->submit)
+        ->where('comentario_usuario_id',auth()->user()->id)
+        ->first();
+        
+        $validated = $request->validated();
+        if($validated && $comentario){
+            $comentario->update($validated);
+            return redirect()->back()->with('alert-success','Mensagem alterada com sucesso');
+        }
+        abort(403);
+    }
+
     public function destroy(Request $request, Comentario $comentario){
-        $comentario->delete();
-        request()->session()->flash('alert-success','Comentário excluído.');
-        return redirect()->back();
+        if($comentario->comentario_usuario_id == auth()->user()->id){
+            $comentario->delete();
+            request()->session()->flash('alert-success','Comentário excluído.');
+            return redirect()->back();
+        }
+        abort(403);
     }
 
 }

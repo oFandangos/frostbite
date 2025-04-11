@@ -32,7 +32,6 @@ class ContaController extends Controller
         $validated = $request->validated();
         if($validated){
             $validated['password'] = bcrypt($request['password']);
-            #$validated['remember_token'] = Str::random(60);
             $user = User::create($validated);
             Mail::to($request->email)->send(new SendConfirmationMail($user));
             request()->session()->flash('alert-success','Usuário cadastrado com sucesso. Faça a confirmação por e-mail');

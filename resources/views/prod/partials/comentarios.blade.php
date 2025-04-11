@@ -75,9 +75,6 @@ document.addEventListener('DOMContentLoaded', function(){
         let valorBotao = botao.val(); // Obtém o valor do botão
         let paragrafo = botao.closest('.row').find('p.paragrafo');
         
-        let submit = document.createElement('button');
-        submit.type = 'submit';
-        
         let textoParagrafo = paragrafo.text();
         input.value = textoParagrafo;
         
