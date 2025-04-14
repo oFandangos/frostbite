@@ -1,7 +1,5 @@
-@extends('laravel-usp-theme::master')
-@extends('styles.app')
+@extends('menu.menu')
 @section('content')
-
 @if(request()->url() == url('/'))
 <form action="/" method="get">
     <div class="row">

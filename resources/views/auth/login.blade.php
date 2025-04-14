@@ -1,4 +1,4 @@
-@extends('laravel-usp-theme::master')
+@extends('menu.menu')
 
 @section('content')
 

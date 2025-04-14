@@ -1,4 +1,4 @@
-@extends('laravel-usp-theme::master')
+@extends('menu.menu')
 @extends('styles.app')
 @section('content')
 <a href="/cat/create" class="btn btn-success">Cadastar categorias</a>

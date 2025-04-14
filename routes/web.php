@@ -44,8 +44,6 @@ Route::post('/store',[ContaController::class, 'store']);
 Route::get('/email_verificado/{id}', [ContaController::class, 'emailConfirmado'])
 ->name('email.confirmado');
 
-Route::get('/teste/{id}/{hash}', [ContaController::class, 'confirmarEmailView'])->name('teste'); //excluir
-
 // recuperar senha do usuário
 Route::get('/recuperar-senha', [ContaController::class, 'recuperarSenhaView']);
 Route::post('/recuperar', [ContaController::class, 'sendMail']);

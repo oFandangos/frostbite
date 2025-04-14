@@ -89,11 +89,5 @@ class UserController extends Controller
                 return redirect('/user');
             }
         }
-        
-            // request()->session()->flash('alert-warnin','desbaniu');
-            // return redirect('/user');
-        
-            // request()->session()->flash('alert-warning','usuario ja banido');
-            // return redirect('/user');
     }
 }

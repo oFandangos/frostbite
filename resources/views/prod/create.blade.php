@@ -1,4 +1,4 @@
-@extends('laravel-usp-theme::master')
+@extends('menu.menu')
 @extends('styles.app')
 @section('content')
 <div class="container">

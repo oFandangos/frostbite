@@ -14,10 +14,6 @@ class IndexController extends Controller
 
     
     public function index(Request $request, Category $categories){
-        $apiKey = env('API_KEY');
-        $city = 'São Paulo,br';
-        $temperatura = Http::get('https://api.openweathermap.org/data/2.5/weather?q='.$city.'&APPID='.$apiKey.'&units=metric');
-        $icon = $temperatura['weather'][0]['icon'];
 
         $query = Produto::orderBy('produtos.nome_prod','desc')
         ->join('users','produtos.user_id','=','users.id')
@@ -39,8 +35,6 @@ class IndexController extends Controller
         return view('index', [
             'produtos' => $produtos,
             'categories' => $categories,
-            'temperatura' => $temperatura,
-            'icon' => $icon
             ]);
 
     }
