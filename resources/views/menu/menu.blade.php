@@ -17,14 +17,30 @@
       <ul class="nav-links">
         <li><b>SISTEMA LARAVEL</b></li>
         <li><a class="a-links" href="/">Home</a></li>
+        @can('is_user')
           <li class="a-links" id="dropdown-container">
             <a class="a-links" href="#" id="dropdown" name="dropdown">Produtos</a>
             <div class="submenu" id="submenu">
               <a class="a-links" href="/produto/create">Cadastrar um produto</a>
             </div>
           </li>
-        <li><a class="a-links" href="/conta">Conta</a></li>
+          <li><a class="a-links" href="/conta">Conta</a></li>
+        @endcan
+        @can('is_admin')
         <li><a class="a-links" href="/user">Administração</a></li>
+        @endcan
+        @if(!auth()->check())
+        <li><a class="a-links" href="login">Logar</a></li>
+        <li><a class="a-links" href="cadastrar">Criar Conta</a></li>
+        @else
+        <li><a class="a-links">{{auth()->user()->name}}</a></li>
+        <li>
+          <form method="post" action="logout" class="a-links">
+            @csrf
+            <button class="a-links" type="submit" id="logout">Deslogar</button>
+          </form>
+        </li>
+        @endif
         <li><a id="drop"><b>DROPDOWN</b></a></li>
       </ul>
     </nav>

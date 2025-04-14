@@ -23,6 +23,12 @@
     background-color:black;
 }
 
+#logout{
+    border:none;
+    outline:none;
+    background-color:transparent;
+}
+
 @media(max-width:562px){
     .a-links{
         display:none;
