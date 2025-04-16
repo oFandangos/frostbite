@@ -14,8 +14,9 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasFactory;
     use Notifiable;
 
-    protected $guarded = [];
+    protected $guarded = ['id'];
 
+    /*
     protected $fillable = [
         'name',
         'email',
@@ -24,6 +25,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'is_admin',
         'is_banned'
     ];
+    */
 
     //pode ser usado para definir, por meio de um select, um admin 
     public static function usuarios(){

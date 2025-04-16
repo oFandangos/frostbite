@@ -5,7 +5,7 @@
             <div class="card">
                 <div class="card-body">
                     <label><b>Comente</b></label>
-                    <form method="post" action="produto/comentar/{{$produto->id}}">
+                    <form method="post" action="/produto/comentar/{{$produto->id}}">
                         @csrf
                         <textarea class="form-control" name="comentario" value="{{ old('comentario') }}"></textarea>
                         <button class="btn btn-success" style="margin-top:5px;">Enviar comentário</button>
@@ -36,7 +36,7 @@
                                     class="btn btn-danger"
                                     onclick="return confirm('Tem certeza que deseja excluir?');"
                                     style="margin-top:8px;">
-                                    <i class="bi bi-trash-fill"></i>
+                                    <i class="fas fa-trash"></i>
                                     </button>
                                     </form>
                                     

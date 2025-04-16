@@ -19,14 +19,17 @@
                     <p>Autor: <a href="">{{$user->email ?? 'N/A'}}</a></p>
                     @if(isset($autor) && ($autor->id == $produto->user_id))
                         @include('files.partials.form')
-                        <a href="/produto/edit/{{$produto->id}}" class="btn btn-warning" style="width:100%; margin-top:8px;"><i class="bi bi-pencil-square"></i>Editar Produto</a>
+                        <a href="/produto/edit/{{$produto->id}}" class="btn btn-warning" style="width:100%; margin-top:8px;">
+                            <i class="fas fa-pencil"></i>
+                            Editar Produto
+                        </a>
                         <form method="post" action="/produto/{{$produto->id}}">
                         @method('delete')
                         @csrf
-                        <button class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir?');" style="width:100%; margin-top:8px;"><i class="bi bi-trash-fill"> Excluir</i></button>
+                        <button class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir?');" style="width:100%; margin-top:8px;"><i class="fas fa-trash"> Excluir</i></button>
                     </form> 
                     @endif
-                    <a class="btn btn-success"><i class="bi bi-cart-plus-fill"></i>R$ {{round($produto->valor_prod)}},00</a>
+                    <a class="btn btn-success"><i class="fas fa-cart-plus"></i>R$ {{round($produto->valor_prod)}},00</a>
                 </div>
             </div>
         </div>

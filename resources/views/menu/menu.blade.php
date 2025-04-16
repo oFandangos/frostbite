@@ -15,8 +15,7 @@
   <div class="div">
     <nav>
       <ul class="nav-links">
-        <li><b>SISTEMA LARAVEL</b></li>
-        <li><a class="a-links" href="/">Home</a></li>
+        <li><b><a href="/" class="a-links">SISTEMA LARAVEL</a></b></li>
         @can('is_user')
           <li class="a-links" id="dropdown-container">
             <a class="a-links" href="#" id="dropdown" name="dropdown">Produtos</a>
@@ -35,7 +34,7 @@
         @else
         <li><a class="a-links">{{auth()->user()->name}}</a></li>
         <li>
-          <form method="post" action="logout" class="a-links">
+          <form method="post" action="/logout" class="a-links">
             @csrf
             <button class="a-links" type="submit" id="logout">Deslogar</button>
           </form>

@@ -1,5 +1,5 @@
 @extends('menu.menu')
-@extends('styles.app')
+
 @section('content')
 
 <div class="container">

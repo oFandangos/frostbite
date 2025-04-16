@@ -37,8 +37,9 @@ class ContaRequest extends FormRequest
             'password' => 'required|min:4',
             'password_confirmation' => 'required|min:4|same:password',
             'remember_token' => 'nullable',
-            'newsletters' => 'nullable|boolean',
+            'newsletters' => 'integer',
         ];
+        
         return $rules;
     }
 }

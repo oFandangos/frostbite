@@ -49,29 +49,4 @@
   </div>
 </div>
 
-{{-- 
-
-  <div class="card">
-    <div class="card-body">
-      Temperatura atual: {{round($temperatura['main']['temp'], 0)}} ºC <img src="http://openweathermap.org/img/w/{{$icon}}.png" alt="Clima" />
-    </div>
-  </div>
-  --}}
-  
-      <script>
-        // Função para formatar número com pontos como separadores de milhar
-        function formatNumber(num) {
-        // Separar parte inteira e decimal
-        let parts = parseInt(num).toFixed(2).split('.');
-        // Adicionar pontos como separadores de milhar
-        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-        // Juntar parte inteira e decimal com vírgula
-        return parts.join();
-    }
-    // Selecionar todas as células de preço e formatar os números
-    document.querySelectorAll('.num').forEach(function(element) {
-        let formattedNumber = formatNumber(element.textContent);
-        element.textContent = formattedNumber;
-    });
-</script>
 @endsection
