@@ -29,8 +29,8 @@
         <li><a class="a-links" href="/user">Administração</a></li>
         @endcan
         @if(!auth()->check())
-        <li><a class="a-links" href="login">Logar</a></li>
-        <li><a class="a-links" href="cadastrar">Criar Conta</a></li>
+        <li><a class="a-links" href="/login">Logar</a></li>
+        <li><a class="a-links" href="/cadastrar">Criar Conta</a></li>
         @else
         <li><a class="a-links">{{auth()->user()->name}}</a></li>
         <li>

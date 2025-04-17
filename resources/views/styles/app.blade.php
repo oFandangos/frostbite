@@ -27,7 +27,36 @@ i{
 .navbar-brand,.nav-link{
     color:white!important;
 }
-    
+
+.btn{
+    border:none !important;
+    padding:10px !important;
+    color:white !important;
+}
+.btn.btn-success{
+    background:rgb(21,172,54) !important;
+    background:linear-gradient(45deg, rgb(31, 164, 60) 0%, rgb(31, 216, 126) 50%, rgb(153, 220, 128) 100%) !important;
+}
+
+.btn.btn-warning{
+    background:rgb(229, 236, 22) !important;
+    background:linear-gradient(45deg, rgb(229,236,22) 0%, rgb(239, 246, 32) 50%, rgb(249, 255, 42) 100%) !important;
+    color:black !important;
+}
+.btn.btn-danger{
+    background:rgb(178, 23, 23) !important;
+    background:linear-gradient(45deg, rgb(178, 23, 23) 0%, rgb(208, 62, 62) 50%, rgb(252, 130, 130) 100%) !important;
+}
+.btn.btn-primary{
+    background:rgb(56, 98, 195) !important;
+    background:linear-gradient(45deg, rgb(56, 98, 195) 0%, rgb(69, 118, 215) 50%, rgb(99, 148, 225) 100%) !important;
+}
+
+.btn.btn-info{
+    background:rgb(39, 92, 97) !important;
+    background:linear-gradient(45deg, rgb(39, 92, 97) 0%, rgb(69, 122, 127) 50%, rgb(99, 144, 157) 100%) !important;
+}
+
 </style>
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
