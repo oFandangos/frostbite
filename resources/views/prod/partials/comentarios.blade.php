@@ -8,7 +8,8 @@
                     <form method="post" action="/produto/comentar/{{$produto->id}}">
                         @csrf
                         <textarea class="form-control" name="comentario" value="{{ old('comentario') }}"></textarea>
-                        <button class="btn btn-success" style="margin-top:5px;">Enviar comentário</button>
+                        
+                         <input type="submit" class="btn btn-success" style="margin-top:5px; width:100%;" name="enviar" value="Enviar comentário">
                     </form>
                 </div>
             </div>
@@ -25,7 +26,7 @@
                     @foreach($comentarios as $index => $comentario)
                     <div class="row">
                         <div class="col-12">
-                            <b>{{$comentario->user->name}}</b><i class="text-muted"> {{date('d/m/Y',strtotime($comentario->created_at))}}</i><br/>
+                            <b>{{$comentario->user->name}}</b><i class="text-muted"> {{ $comentario->created_at }}</i><br/>
                                 <p id="paragrafo" class="paragrafo" value="{{$comentario->id}}">{{$comentario->comentario}}</p>
                                 @if(auth()->check() && $comentario->comentario_usuario_id == auth()->user()->id)
                                     <form method="post" action="/produto/comentar/delete/{{$comentario->id}}">
@@ -34,12 +35,10 @@
                                     <button
                                     type="submit"
                                     class="btn btn-danger"
-                                    onclick="return confirm('Tem certeza que deseja excluir?');"
-                                    style="margin-top:8px;">
+                                    onclick="return confirm('Tem certeza que deseja excluir?');">
                                     <i class="fas fa-trash"></i>
                                     </button>
                                     </form>
-                                    
                                     <button 
                                     class="btn btn-primary"
                                     id="edit" 
@@ -70,16 +69,24 @@ document.addEventListener('DOMContentLoaded', function(){
         input.className = 'form-control';
         input.type = 'text';
 
+    $('input[name="enviar"]').click(function(){
+        let enviar = $(this);
+        enviar.val('Enviando...');
+        setTimeout(() => {
+            enviar.prop('disabled',true);
+        }, 1);
+    });
+
     $('button[name="editar"]').on('click', function(){ 
-        let botao = $(this); // Pega o botão clicado
-        let valorBotao = botao.val(); // Obtém o valor do botão
+        let botao = $(this);
+        let valorBotao = botao.val();
         let paragrafo = botao.closest('.row').find('p.paragrafo');
         
         let textoParagrafo = paragrafo.text();
         input.value = textoParagrafo;
         
-        let formularioAction = `/produto/show/comentario/${valorBotao}`;
-
+        let formularioAction = `/produto/`+{{request()->route('produto')->id}}+`/comentario/${valorBotao}`;
+        
         let html = `
         <form method="post" action="${formularioAction}">
             @csrf

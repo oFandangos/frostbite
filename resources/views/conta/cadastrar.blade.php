@@ -10,24 +10,34 @@
                     <form method="post" action="/store">
                         @csrf
                         <div class="row">
-                            <label>E-mail</label>
-                            <input type="email" class="input" name="email" value="{{old('email')}}" placeholder="Ex.: nome@email.com">
+                            <div class="col">    
+                                <label>E-mail</label>
+                                <input type="email" class="input" name="email" value="{{old('email')}}" placeholder="Ex.: nome@email.com">
+                            </div>
                         </div>
                         <div class="row">
-                            <label>Número de usuário</label>
-                            <input type="text" class="input" name="codpes" value="{{old('codpes')}}" placeholder="Ex.: 123456789">
+                            <div class="col">
+                                <label>Número de usuário</label>
+                                <input type="text" class="input" name="codpes" value="{{old('codpes')}}" placeholder="Ex.: 123456789">
+                            </div>
                         </div>
                         <div class="row">
-                            <label>Nome de usuário</label>
-                            <input type="text" class="input" name="name" value="{{old('name')}}" placeholder="Insira seu nome de usuário">
+                            <div class="col">
+                                <label>Nome de usuário</label>
+                                <input type="text" class="input" name="name" value="{{old('name')}}" placeholder="Insira seu nome de usuário">
+                            </div>
                         </div>
                         <div class="row">
-                            <label>Senha</label>
-                            <input class="input" name="password" type="password" value="{{old('password')}}" placeholder="Insira sua senha">
+                            <div class="col">
+                                <label>Senha</label>
+                                <input class="input" name="password" type="password" value="{{old('password')}}" placeholder="Insira sua senha">
+                            </div>
                         </div>
                         <div class="row">
-                            <label>Confirme sua senha</label>
-                            <input class="input" name="password_confirmation" type="password" value="{{old('password_confirmation')}}" placeholder="Insira sua senha novamente">
+                            <div class="col">
+                                <label>Confirme sua senha</label>
+                                <input class="input" name="password_confirmation" type="password" value="{{old('password_confirmation')}}" placeholder="Insira sua senha novamente">
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col">
@@ -50,8 +60,9 @@
         padding:2.4rem;
     }
     label{
-        margin-bottom:-.2rem;
+        /*margin-bottom:-.2rem;
         margin-top:1rem;
+        */
         font-weight:bold;
     }
     #letter{

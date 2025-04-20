@@ -16,7 +16,7 @@ class UserController extends Controller
             if($request->search){
                 $query->where(function($query) use ($request){
                     $query->orWhere('name','LIKE','%'.$request->search.'%')
-                    ->orWhere('codpes','like','%'.$request->search.'%')
+                    ->orWhere('codpes', $request->search)
                     ->get();
                 });
             }
@@ -39,23 +39,19 @@ class UserController extends Controller
         $user = User::where('codpes', '=', $request->codpes)->first();
         if($user->is_banned == false){
             if($user->codpes == $userLogado->codpes){
-                request()->session()->flash('alert-danger','Não é possivel alterar o proprio admin');
-                return redirect('/user');
+                return redirect('/user')->with('error','Não é possivel alterar o proprio admin');
             }else{
                 $user->codpes = $request->codpes;
                 $user->is_admin = $request->is_admin;
                 $user->save();
                 if($user->is_admin == true){
-                    request()->session()->flash('alert-success','Usuario cadastrado como admin');
-                    return redirect('/user');
+                    return redirect('/user')->with('success','Usuario cadastrado como admin');
                 }else{
-                    request()->session()->flash('alert-warning',"Administrador do usuário ".$user->name." - ".$user->codpes." removido");
-                    return redirect('/user');
+                    return redirect('/user')->with('error',"Administrador do usuário ".$user->name." - ".$user->codpes." removido");
                 }
             }
         }else{
-            request()->session()->flash('alert-warning','Não é possível cadastrar um usuário banido como admin');
-            return redirect('/user');
+            return redirect('/user')->with('error', 'Não é possível cadastrar um usuário banido como admin');
         }
     }
 
@@ -70,11 +66,9 @@ class UserController extends Controller
         $userLogado = Auth::user();
         $user = User::where('codpes', '=', $request->codpes)->first();
         if($user->codpes == $userLogado->codpes){
-            request()->session()->flash('alert-danger','Não é possível banir a si mesmo');
-            return redirect('/user');
+            return redirect('/user')->with('error','Não é possível banir a si mesmo');
         }elseif($user->is_banned == true && $request->is_banned == true){
-            request()->session()->flash('alert-warning','Usuario já banido');
-            return redirect('/user');
+            return redirect('/user')->with('error','Usuario já banido');
         }else{
             $user->codpes = $request->codpes; //tirar o codpes para impedir o usuario de logar; mostrar mensagem de erro caso tente logar
             $user->justificativa = $request->justificativa;
@@ -82,11 +76,9 @@ class UserController extends Controller
             $user->is_admin = false;
             $user->save();
             if($request->is_banned == true){
-                request()->session()->flash('alert-success','Usuário "'."$user->name". '" - '. $user->codpes .' banido');
-                return redirect('/user');
+                return redirect('/user')->with('success','Usuário "'."$user->name". '" - '. $user->codpes .' banido');
             }else{
-                request()->session()->flash('alert-success','Usuário "'. "$user->name". '" - '. $user->codpes .' desbanido');
-                return redirect('/user');
+                return redirect('/user')->with('success', 'Usuário "'. "$user->name". '" - '. $user->codpes .' desbanido');
             }
         }
     }

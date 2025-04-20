@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
@@ -12,6 +13,10 @@ class Comentario extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function getCreatedAtAttribute($value){
+        return $this->value = Carbon::parse($value)->format('d/m/Y');
+    }
 
     public function user(){
         return $this->belongsTo(User::class, 'comentario_usuario_id');

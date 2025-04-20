@@ -34,10 +34,9 @@ class ContaController extends Controller
             $validated['password'] = bcrypt($request['password']);
             $user = User::create($validated);
             Mail::to($request->email)->send(new SendConfirmationMail($user));
-            request()->session()->flash('alert-success','Usuário cadastrado com sucesso. Faça a confirmação por e-mail');
-            return redirect()->back();
+            return redirect()->back()->with('success','Usuário cadastrado com sucesso. Faça a confirmação por e-mail');
         }
-        return redirect()->back()->with('alert-danger','Erro ao cadastrar usuário');
+        return redirect()->back()->with('error','Erro ao cadastrar usuário');
     }
 
     public function confirmarEmailView(){ //mensagem do email
@@ -51,8 +50,7 @@ class ContaController extends Controller
         $user->email_verified_at = now();
         $user->remember_token = Str::random(60);
         $user->save();
-        request()->session()->flash('alert-success','E-mail confirmado com sucesso');
-        return redirect('/');
+        return redirect('/')->with('success','E-mail confirmado com sucesso');
     }
 
     public function edit(User $user){

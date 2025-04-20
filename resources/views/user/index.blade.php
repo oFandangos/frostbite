@@ -44,7 +44,7 @@
                     @endif
                 </td>
                 <td>
-                    <a href="/adm/create/{{$user->id}}" class="btn btn-primary"><i class="bi bi-person-fill-up"></i></a>
+                    <a href="/adm/create/{{$user->id}}" class="btn btn-primary"><i class="fas fa-user-plus"></i></a>
                     <a href="/adm/banir/{{$user->id}}" class="btn btn-danger"><i class="fa fa-hammer"></i></a>
                 </td>
                 <td>
@@ -60,9 +60,9 @@
             <div class="card-body">
                 <h3 class="text-center">Ações do Administrador</h3>
                 <hr />
-                    <a href="/newsletter/create" class="btn btn-info"><i class="bi bi-plus-circle-fill"></i> Adicionar Newsletter</a>
+                    <a href="/newsletter/create" class="btn btn-info"><i class="fas fa-plus-circle"></i> Adicionar Newsletter</a>
                     <a href="/adm/prod-listar" class="btn btn-warning"><i class="fa fa-flag"></i> Produtos a serem aceitos</a>
-                    <a href="/cat" class="btn btn-primary" id="success"><i class="bi bi-eye-fill"></i>Ver categorias</a>
+                    <a href="/cat" class="btn btn-primary" id="success"><i class="fas fa-eye"></i>Ver categorias</a>
                 </div>
             </div>
         </div>  

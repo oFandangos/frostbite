@@ -24,15 +24,26 @@ class ProdutoRequest extends FormRequest
     {
         $rules = [
             'nome_prod' => 'required',
-            // 'category_id' => ['', Rule::in(\App\Models\Category::categories())],
-            'valor_prod' => 'int'
-        ];
+            'category_id' => ['required', Rule::in(\App\Models\Category::categories()->pluck('id')->toArray())],
+            'user_id' => ['required','integer'],
+            'status' => ['nullable'],
+            'valor_prod' => ['integer','required']
+        ];    
         return $rules;
+    }
+
+    protected function prepareForValidation(){
+        $this->merge([
+            'user_id' => auth()->user()->id,
+            // 'status' => 'em_analise',
+        ]);
     }
 
     public function messages(){
         return[
-            'valor_prod.integer' => 'valor inteiro'
+            'nome_prod.required' => 'Nome é obrigatório',
+            'valor_prod.required' => 'Valor é obrigatório',
+            'category_id.required' => 'Categora é obrigatória',
         ];
     }
 

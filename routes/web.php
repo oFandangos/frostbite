@@ -58,7 +58,7 @@ Route::delete('/produto/{produto}',[ProdutoController::class,'destroy']);
 
 
 Route::post('/produto/comentar/{produto}', [ComentarioController::class, 'store']);
-Route::put('/produto/show/comentario/{valor}', [ComentarioController::class, 'update']);
+Route::put('/produto/{produto}/comentario/{comentario}', [ComentarioController::class, 'update']);
 Route::delete('/produto/comentar/delete/{comentario}', [ComentarioController::class, 'destroy']);
 
 #criacao de usuario por um admin

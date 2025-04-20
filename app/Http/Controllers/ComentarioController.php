@@ -9,26 +9,22 @@ use App\Http\Requests\ComentarioRequest;
 
 class ComentarioController extends Controller
 {
-    public function store(Request $request, Produto $produto){
-        $comentario = new Comentario;
-        $comentario->comentario = $request->comentario;
-        $comentario->produto_id = $produto->id;
-        $comentario->comentario_usuario_id = auth()->user()->id;
-        $comentario->created_at = now();
-        $comentario->save();
-
+    public function store(ComentarioRequest $request){
+        $validated = $request->validated();
+        $comentario = Comentario::create($validated);
         return redirect()->back()->with('success', 'Comentário adicionado com sucesso!');
     }
 
-    public function update(ComentarioRequest $request, Comentario $comentario){
+    public function update(Produto $produto, Comentario $comentario, ComentarioRequest $request){
+        
         $comentario = Comentario::where('id',$request->submit)
-        ->where('comentario_usuario_id',auth()->user()->id)
+        ->where('comentario_usuario_id', auth()->user()->id)
         ->first();
         
         $validated = $request->validated();
         if($validated && $comentario){
             $comentario->update($validated);
-            return redirect()->back()->with('alert-success','Mensagem alterada com sucesso');
+            return redirect()->back()->with('success','Mensagem alterada com sucesso');
         }
         abort(403);
     }
@@ -36,8 +32,7 @@ class ComentarioController extends Controller
     public function destroy(Request $request, Comentario $comentario){
         if($comentario->comentario_usuario_id == auth()->user()->id){
             $comentario->delete();
-            request()->session()->flash('alert-success','Comentário excluído.');
-            return redirect()->back();
+            return redirect()->back()->with('success','Comentário excluído');
         }
         abort(403);
     }

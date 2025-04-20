@@ -22,43 +22,33 @@ class ProdutoController extends Controller
         ->first();
 
         $comentario = Comentario::select('comentarios.id','comentarios.created_at','comentarios.comentario','comentarios.comentario_usuario_id')->where('produto_id', '=', $produto->id)
-        ->join('users', 'comentarios.comentario_usuario_id', '=', 'users.id')
         ->get();
 
         return view('prod.show', ['produto' => $produto, 'autor' => $autor, 'user' => $user, 'comentarios' => $comentario]);
     }
         
     public function create(Produto $produto, Category $categories, User $users){
-            $userId = Auth::id();
-            Gate::authorize('create', $produto);
-            return view('prod.create')->with(['produto' => $produto, 'categories' => $categories, 'users' => $users, 'userId' => $userId]);
+        $userId = Auth::id();
+        Gate::authorize('create', $produto);
+        return view('prod.create')->with(['produto' => $produto, 'categories' => $categories, 'users' => $users, 'userId' => $userId]);
     }
 
-    public function store(ProdutoRequest $request, Produto $produto, Category $category, User $user){
-        $produto = new Produto;
-        $produto->nome_prod = $request->nome_prod;
-        $produto->valor_prod = $request->valor_prod;
-        $produto->category_id = $request->category_id;
-        $produto->user_id = $request->user_id;
-        $produto->save();
-        request()->session()->flash('alert-success','Produto Cadastrado com sucesso! Esperando análise administrativa.');
-        return redirect("/produto/show/{$produto->id}");
+    public function store(ProdutoRequest $request){
+        $validated = $request->validated();
+        $produto = Produto::create($validated);
+        return redirect("/produto/show/{$produto->id}")->with('success',"Produto criado com sucesso!" );
     }
 
     public function edit(Produto $produto, User $user, Category $categories){
-
         Gate::authorize('edit', $produto);
-
         return view('prod.edit', ['produto' => $produto, 'categories' => $categories]);
     }
 
     public function update(ProdutoRequest $request, Produto $produto){
-        $produto->nome_prod = $request->nome_prod;
-        $produto->valor_prod = $request->valor_prod;
-        $produto->category_id = $request->category_id;
-        $produto->save();
-        request()->session()->flash('alert-success','Produto alterado com sucesso!');
-        return redirect("/produto/show/{$produto->id}");
+        Gate::authorize('edit',$produto);
+        $validated = $request->validated();
+        $produto->update($validated);
+        return redirect("/produto/show/{$produto->id}")->with('success','Produto alterado com sucesso!');
     }
 
     public function destroy(Produto $produto){
