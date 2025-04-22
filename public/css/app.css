@@ -128,7 +128,7 @@ li {
     height: 400px;
     background-size: cover;
     background-position: center;
-    background-image: url("https://cdn.awsli.com.br/800x800/960/960037/produto/50073660/camiseta-branca-infantil-flame-rrgtnt.jpg");
+    background-image: url('../back.png');
     transform: scaleX(1);
     transition: .4s;
 }
@@ -138,7 +138,7 @@ li {
     transform:scaleX(1.1) scaleY(1.1);
     background-size: cover;
     background-position: center;
-    background-image: url("https://www.kacewear.com.br/cdn/shop/files/Camiseta_Oversized_Box_Gola_Alta_Cinza_Kace_Masculino_Detalhe.jpg?v=1717797707");
+    background-image:url('../front.png');
 }
 
 .search {

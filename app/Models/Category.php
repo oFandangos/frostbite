@@ -20,7 +20,7 @@ class Category extends Model
 
 
     public static function categories(){
-        $categories = Category::select('nome_cat')->get();
+        $categories = Category::select('id','nome_cat')->get();
         return $categories;
      }
   

@@ -24,7 +24,6 @@
       <a href="/produto/show/{{ $produto->id }}"><div class="card-img-top"></div></a>
       <div class="card-title">Título: {{ $produto->nome_prod  }}</div>
       <div class="card-title">Valor: R$ {{ $produto->valor_prod }},00</div>
-      <!-- <div class="card-text">Autor: {{ $produto->name }}</div> -->
       <a href="/produto/show/{{ $produto->id }}" class="comprar">Comprar</a>
       </div>
       </div>
@@ -32,7 +31,6 @@
   @endforeach
     </div>
   </div>
-
 
   <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -44,7 +42,8 @@
     const headerH = header.offsetHeight;
 
     // ponto onde a barra deve “grudar”: fim do banner
-    const stickyPoint = banner.offsetTop + banner.offsetHeight - headerH;
+    //const stickyPoint = banner.offsetTop + banner.offsetHeight - headerH;
+    const stickyPoint = 510;
 
     window.addEventListener('scroll', () => {
       if (window.scrollY >= stickyPoint) {
