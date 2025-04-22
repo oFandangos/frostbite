@@ -8,8 +8,7 @@
                     <form method="post" action="/produto/comentar/{{$produto->id}}">
                         @csrf
                         <textarea class="form-control" name="comentario" value="{{ old('comentario') }}"></textarea>
-                        
-                         <input type="submit" class="btn btn-success" style="margin-top:5px; width:100%;" name="enviar" value="Enviar comentário">
+                         <input type="submit" class="comprar" style="margin-top:5px; width:100%;" name="enviar" value="Enviar comentário">
                     </form>
                 </div>
             </div>
@@ -92,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function(){
             @csrf
             @method("put")
             <textarea name="comentario" class="form-control" value="${textoParagrafo}">${textoParagrafo}</textarea>
-            <button type="submit" class="btn btn-success" name="submit" value="${valorBotao}" style="margin-top:8px;">Alterar</button>
+            <button type="submit" class="comprar" name="submit" value="${valorBotao}" style="margin-top:8px;">Alterar</button>
         </form>
         `;
         paragrafo.replaceWith(html);

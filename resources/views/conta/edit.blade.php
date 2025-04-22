@@ -3,7 +3,6 @@
 @section('content')
 
 <div class="container">
-
     <div class="row">
         <div class="col">
             <form method="post" action="/conta/{{auth()->user()->id}}">
@@ -11,34 +10,32 @@
                 @method('put')
                 <div class="card">
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col">
-                                <label>Nome</label>
-                                <input type="text" name="name" value="{{ old('name', $user->name) }}" >
-                            </div>
-                            <div class="col">
-                                <label>E-mail</label>
-                                <input type="text" name="email" value="{{auth()->user()->email}}" >
-                            </div>
+                        <h4>{{ Auth::user()->name }}</h4>
+                        <hr/>
+                        <div class="form-floating-group">
+                            <input class="input" name="nome" placeholder=" " value="{{ old('name', $user->name) }}">
+                            <label for="name">Nome</label>
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <label>Código de usuário</label>
-                                <input type="text" name="codpes" value="{{auth()->user()->codpes}}" >
-                            </div>
-                            <div class="col">
-                                <label>Nova Senha</label>
-                                <input type="password" name="password">
-                                <i class="fas fa-eye" onClick="showPassword()" id="eye1"></i>
-                            </div>
-                            <div class="col">
-                                <label>Repita sua nova senha</label>
-                                <input type="password" name="password_confirmation" >
-                                <i class="fas fa-eye" onClick="showPasswordConfirmation()" id="eye2"></i>
-                            </div>
+                        <div class="form-floating-group">
+                            <input class="input" name="email" placeholder=" " value="{{ old('email', $user->email)}}">
+                            <label for="email">E-mail</label>
                         </div>
-                        <button type="submit" class="alterar">Alterar</button>
+                        <div class="form-floating-group">
+                            <input class="input" name="codpes" placeholder=" " value="{{ old('codpes', $user->codpes)}}">
+                            <label for="codpes">Código de usuário</label>
+                        </div>
+                        <div class="form-floating-group">
+                            <input class="input" name="password" type="password" placeholder=" ">
+                            <label for="password">Senha</label>
+                            <i class="fas fa-eye" onClick="showPassword()" id="eye1"></i>
+                        </div>
+                        <div class="form-floating-group">
+                            <input class="input" name="password_confirmation" type="password" placeholder=" ">
+                            <label for="password_confirmation">Confirme sua senha</label>
+                            <i class="fas fa-eye" onClick="showPasswordConfirmation()" id="eye2"></i>
+                        </div>
                     </div>
+                    <a href="/conta/" class="btn btn-primary"><i class="fas fa-arrow-left"></i></a>
                 </div>
             </form>
         </div>
@@ -71,51 +68,5 @@
     }
 
 </script>
-
-<style>
-    .col{
-        margin:8px;
-    }
-
-    label{
-        display:flex;
-        flex-direction:column;
-        flex-wrap:wrap;
-    }
-    input{
-        border-top:0;
-        border-left:0;
-        border-right:0;
-        border-bottom:1px solid #000;
-        width:100%;
-        transition:.1s;
-    }
-    input:focus{
-        outline:none;
-        border-bottom:2px solid rgb(38, 192,11);
-    }
-
-    .testando{
-        width:100px !important;
-    }
-
-    .alterar{
-        margin-top:8px;
-        width:100%;
-        padding:6px;
-        background-color:transparent;
-        color: rgb(38, 192, 11);
-        border: 2px solid rgb(38, 192, 11);
-        transition:.2s;
-        border-radius:5px;
-    }
-    .alterar:hover{
-        background-color:rgb(38, 192, 11);
-        color:white;
-        border: 2px solid rgb(38, 192, 11);
-        cursor:pointer;
-    }
-</style>
-
 
 @endsection

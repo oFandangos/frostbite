@@ -31,7 +31,7 @@
                             </form>
                         </div>
                     @endif
-                    <a class="btn btn-success"><i class="fas fa-cart-plus"></i>R$ {{round($produto->valor_prod)}},00</a>
+                    <a class="btn btn-success" style="color:white;"><i class="fas fa-cart-plus"></i>R$ {{round($produto->valor_prod)}},00</a>
                 </div>
             </div>
         </div>

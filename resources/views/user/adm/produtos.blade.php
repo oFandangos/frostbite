@@ -16,7 +16,7 @@
                                 <form method="post" action="/adm/aprovar/{{$produto->id}}">
                                     @csrf
                                     @method('put')
-                                    <button value="aprovado" name="status" class="btn btn-success">Aprovar</button>
+                                    <button value="aprovado" name="status" class="comprar">Aprovar</button>
                                 </form>
                                 <form method="post" action="/adm/reprovar/{{$produto->id}}">
                                     @csrf

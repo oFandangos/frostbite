@@ -60,9 +60,6 @@
         padding:2.4rem;
     }
     label{
-        /*margin-bottom:-.2rem;
-        margin-top:1rem;
-        */
         font-weight:bold;
     }
     #letter{

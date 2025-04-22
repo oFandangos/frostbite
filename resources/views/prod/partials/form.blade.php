@@ -17,12 +17,14 @@
 <div class="form-floating-group">
     <select name="category_id" class="input">
         <option value="" disabled selected hidden>Selecionar categoria</option>
-        @foreach($categories::categories() as $category)
-            <option value="{{$category->id}}"  {{ $produto->category_id ? 'selected' : '' }} >{{$category->nome_cat}}</option>
-        @endforeach
+
+    @foreach($categories::categories() as $index => $category)
+    <option value="{{ $category->id }}">{{ $category->nome_cat }}</option>
+       @endforeach
+
     </select>
     <label for="category_id">Categoria</label>
 </div>
-<button type="submit" class="btn btn-success" style="width:100%; padding:10px; margin-top:10px;">
+<button type="submit" class="comprar" style="width:100%; padding:10px; margin-top:10px;">
     {{ $produto->id ? 'Editar' : 'Cadastrar' }}
 </button>

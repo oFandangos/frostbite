@@ -12,7 +12,7 @@
                     @csrf
                     @method('put')
                     <div class="row" style="padding-left:15px; padding-right:15px;">
-                        <input class="form-control" id="codpes" type="text" name="codpes" value="{{old ('codpes', $user->codpes)}}" placeholder="Insira o N. USP do Usuário">
+                        <input class="form-control" id="codpes" type="text" name="codpes" value="{{old ('codpes', $user->codpes)}}" placeholder="Insira o código do usuário">
                         <select name="is_banned" id="type-user" class="form-control">
                             <option value="1">Banir Usuário</option>
                             <option value="0">Desbanir Usuario</option>

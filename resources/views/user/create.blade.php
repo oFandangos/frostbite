@@ -12,12 +12,12 @@
                     @csrf
                     @method('put')
                     <div class="row">
-                        <input id="codpes" class="form-control" type="text" name="codpes" value="{{old ('codpes', $user->codpes)}}" placeholder="Insira o N. USP do Usuário">
+                        <input id="codpes" class="form-control" type="text" name="codpes" value="{{old ('codpes', $user->codpes)}}" placeholder="Insira o código do Usuário">
                         <select name="is_admin" id="type-user" class="form-control">
                             <option value="1">Tornar Administrador</option>
                             <option value="0">Remover Administrador</option>
                         </select>
-                    <button type="submit" class="btn btn-success" onclick="return confirm('Tem certeza que deseja atualizar este usuário?');">Cadastrar como administrador</button>
+                    <button type="submit" class="comprar" onclick="return confirm('Tem certeza que deseja atualizar este usuário?');">Cadastrar como administrador</button>
                 </div>
                 </form>
             </div>

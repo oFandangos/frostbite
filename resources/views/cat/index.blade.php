@@ -1,7 +1,7 @@
 @extends('menu.menu')
 @extends('styles.app')
 @section('content')
-<a href="/cat/create" class="btn btn-success">Cadastar categorias</a>
+<a href="/cat/create" class="comprar">Cadastar categorias</a>
 
 <div class="container">
     <div class="row justify-content-center">

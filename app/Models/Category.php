@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Schema;
 
 class Category extends Model
 {
@@ -19,7 +20,7 @@ class Category extends Model
 
 
     public static function categories(){
-        $categories = Category::all();
+        $categories = Category::select('nome_cat')->get();
         return $categories;
      }
   

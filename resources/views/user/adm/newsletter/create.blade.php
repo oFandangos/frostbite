@@ -18,7 +18,7 @@
                             <textarea name="texto" value="{{old('texto')}}" class="form-control" placeholder="Insira a mensagem"></textarea>
                         </div>
                         <input type="hidden" name="user_id" value="{{$user->id}}">
-                        <button type="submit" class="btn btn-success" style="width:100%; padding:8px;">Enviar</button>
+                        <button type="submit" class="comprar" style="width:100%; padding:8px;">Enviar</button>
                     </form>
                 </div>
             </div>

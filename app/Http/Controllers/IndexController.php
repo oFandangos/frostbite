@@ -11,7 +11,19 @@ use Illuminate\Support\Facades\Http;
 
 class IndexController extends Controller
 {
-
+    public function pesquisa(){
+    $query = Produto::join('users','produtos.user_id','users.id')
+    ->where('produtos.nome_prod','like','%'.request()->input .'%')
+    ->where('produtos.status','Aprovado')
+    ->select('produtos.id','produtos.nome_prod','users.name','produtos.valor_prod')
+    ->get()
+    ->toArray();
+        if(!empty($query)){
+            return response()->json($query);
+        }else{
+            return [];
+        }
+    }
     
     public function index(Request $request, Category $categories){
 

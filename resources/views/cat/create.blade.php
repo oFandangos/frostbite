@@ -10,7 +10,7 @@
             @csrf
             <label for="nome">Nome cat</label>
             <input type="text" name="nome_cat" class="form-control" placeholder="Nome da categoria"><br />
-            <button type="submit" class="btn btn-success">Cadastrar Categoria</button>
+            <button type="submit" class="comprar">Cadastrar Categoria</button>
             </form>
               </div>
           </div>

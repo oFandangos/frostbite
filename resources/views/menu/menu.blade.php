@@ -3,7 +3,7 @@
 <html lang="pt-br">
 
 <head>
-  <title>Sistema Laravel</title>
+  <title>{{env('NOME_SISTEMA')}}</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -16,7 +16,8 @@
   <div class="div">
     <nav>
       <ul class="nav-links">
-        <li><b><a href="/" class="a-links">SISTEMA LARAVEL</a></b></li>
+        <!-- <li><b><a href="/" class="a-links">{{ env('NOME_SISTEMA') }}</a></b></li> -->
+         <li><a href="/"><img src="../logo.png" style="max-width:75px;"></a></li>
         @can('is_user')
       <li class="a-links" id="dropdown-container">
         <a class="a-links" href="#" id="dropdown" name="dropdown">Produtos</a>

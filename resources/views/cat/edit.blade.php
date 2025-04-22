@@ -11,7 +11,7 @@
                     @method("put")
                     @csrf
                     <input type="text" name="nome_cat" value="{{old('nome_cat', $category->nome_cat)}}" class="form-control">
-                    <button type="submit" class="btn btn-success" style="width:100%; margin-top:10px; padding:10px;">Editar</button>
+                    <button type="submit" class="comprar" style="width:100%; margin-top:10px; padding:10px;">Editar</button>
                     </form>
                 </div>
             </div>

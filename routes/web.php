@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 use App\Models\Comentario;
 
 Route::get('/',[IndexController::class,'index']);
+Route::get('/pesquisa', [IndexController::class, 'pesquisa']);
 
 #categorias
 Route::get('/cat',[CategoryController::class,'index']);

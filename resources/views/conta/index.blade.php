@@ -2,8 +2,6 @@
 @extends('styles.app')
 @section('content')
 
-minha conta
-
 <div class="container">
     <div class="row">
         <div class="col-md-12">

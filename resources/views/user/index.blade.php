@@ -20,8 +20,8 @@
                 </div>
                 <div class="col-md-8">
                     <form method="get" action="/user">
-                        <input type="text" id="search" name="search" value="{{request()->search}}" class="form-control" placeholder="Insira o nome ou N. USP">
-                        <button type="submit" class="btn btn-success"><i class="fa fa-search"></i> Procurar</button>
+                        <input type="text" id="search" name="search" value="{{request()->search}}" class="form-control" placeholder="Insira o nome ou código de usuário">
+                        <button type="submit" class="comprar"><i class="fa fa-search"></i> Procurar</button>
                     </form>
                 </div>
             </div>
