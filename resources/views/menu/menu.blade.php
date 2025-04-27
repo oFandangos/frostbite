@@ -15,33 +15,36 @@
 <header>
   <div class="div">
     <nav>
-      <ul class="nav-links">
-        <!-- <li><b><a href="/" class="a-links">{{ env('NOME_SISTEMA') }}</a></b></li> -->
-         <li><a href="/"><img src="../logo.png" style="max-width:75px;"></a></li>
-        @can('is_user')
+      <ul class="nav-links" @can('is_admin') style="display:flex; flex:0 0 25%; justify-content: space-between;"
+  @endcan() style="display:flex;">
+        <div class="coluna1">
+          <li><a href="/"><img src="../logo.png" style="max-width:75px;"></a></li>
+          @if(!auth()->check())
+        <li><a class="a-links" href="/login">Logar</a></li>
+        <li><a class="a-links" href="/cadastrar">Criar Conta</a></li>
+      @else
+      @can('is_admin')
       <li class="a-links" id="dropdown-container">
-        <a class="a-links" href="#" id="dropdown" name="dropdown">Produtos</a>
-        <div class="submenu" id="submenu">
-        <a class="a-links" href="/produto/create">Cadastrar</a>
-        </div>
+      <a class="a-links" href="#" id="dropdown" name="dropdown">Produtos</a>
+      <div class="submenu" id="submenu">
+      <a class="a-links" href="/produto/create">Cadastrar</a>
+      </div>
       </li>
-    @endcan
-        @can('is_admin')
       <li><a class="a-links" href="/user">Administração</a></li>
     @endcan
-        @if(!auth()->check())
-      <li><a class="a-links" href="/login">Logar</a></li>
-      <li><a class="a-links" href="/cadastrar">Criar Conta</a></li>
-    @else
-      <li style="margin-left:65%;"><a class="a-links" href="/conta"><b>{{auth()->user()->name}}</b></a></li>
+    </div>
+
+    <div class="coluna2">
+      <li><a class="a-links" href="/conta"><b>{{auth()->user()->name}}</b></a></li>
       <li>
-        <form method="post" action="/logout" class="a-links">
+      <form method="post" action="/logout" class="a-links">
         @csrf
         <button class="a-links" type="submit" id="logout">Deslogar</button>
-        </form>
+      </form>
       </li>
+    </div>
   @endif
-        <li><a id="drop"><b>DROPDOWN</b></a></li>
+        <!-- <li><a id="drop"><b>DROPDOWN</b></a></li> -->
       </ul>
     </nav>
   </div>
@@ -66,10 +69,10 @@
       </div>
     @endif
 
-    @if(session('error'))
-    <div class="alert alert-danger">
+      @if(session('error'))
+      <div class="alert alert-danger">
       {{ session('error') }}
-    </div>
+      </div>
     @endif
 
       @if(session('info'))
@@ -82,6 +85,7 @@
 </div>
 
 <script>
+  
   setTimeout(() => {
     let alert = document.querySelector('.alert');
     if (alert) {
@@ -90,6 +94,7 @@
       setTimeout(() => alert.remove(), 500);
     }
   }, 3000);
+  
 </script>
 
 

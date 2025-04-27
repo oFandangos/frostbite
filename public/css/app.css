@@ -15,6 +15,34 @@ header {
     transition: .2s;
 }
 
+#searchbar-container{
+    position:absolute; 
+    top:48%; 
+    left:53%; 
+    transform:translate(-50%, -50%); 
+    width: 80%; 
+    max-width: 500px; 
+    opacity:95%;
+}
+
+#teste{
+    padding:10px; 
+    width:80%; 
+    border:0; 
+    outline:none; 
+    border-radius:5px;
+}
+
+@media(max-width: 1128px){
+    #searchbar-container{
+        max-width:444px;
+        left:57%;
+    }
+    #teste{
+        width:76%;
+    }
+}
+
 #drop {
     display: none;
 }
@@ -124,6 +152,12 @@ li {
     opacity: 95%;
 }
 
+.alert{
+    position:absolute !important;
+    width:100% !important;
+    z-index:1000 !important;
+}
+
 .card-img-top {
     height: 400px;
     background-size: cover;
@@ -152,6 +186,10 @@ li {
 
 .search:focus {
     outline: none;
+}
+
+#col{
+    margin-bottom:5px;
 }
 
 .form-floating-group {

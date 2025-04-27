@@ -5,9 +5,8 @@
     <div class="row">
     <div class="col-md-12" style="background-color:black; position:relative;">
       <div class="banner"></div>
-      <div id="searchbar-container" style="position:absolute; top:48%; left:53%; transform:translate(-50%, -50%); width: 80%; max-width: 500px; opacity:95%;">
-      <input name="teste" value="{{ old('teste') }}" type="text" id="teste"
-        style="padding:10px; width:80%; border:0; outline:none; border-radius:5px;" placeholder="Pesquisar...">
+      <div id="searchbar-container">
+      <input name="teste" value="{{ old('teste') }}" type="text" id="teste" placeholder="Pesquisar...">
       <button name="botao" class="search"><i class="fas fa-search" style="color:white; font-size:25px;"></i></button>
       </div>
     </div>
@@ -51,14 +50,14 @@
         container.style.position = 'fixed';
         // container.style.top      = headerH + 'px';   // exatamente abaixo do menu
         container.style.top = '20px';
-        container.style.left     = '53%';
+        //container.style.left     = '53%';
         container.style.transform = 'translateX(-50%)';
         container.style.zIndex   = '1000';             // abaixo do header, se quiser atrás
       } else {
         // volta pro estado “flutuante” dentro do banner
         container.style.position = 'absolute';
         container.style.top      = '48%';
-        container.style.left     = '53%';
+        //container.style.left     = '53%';
         container.style.transform = 'translate(-50%, -50%)';
         container.style.zIndex   = '1000';
       }

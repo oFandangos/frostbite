@@ -39,6 +39,6 @@ use AuthenticatesUsers;
 
     public function logout(){
         auth()->logout();
-        return redirect('/');
+        return redirect('/')->with('success','Deslogado');
     }
 }
