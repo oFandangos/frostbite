@@ -18,7 +18,7 @@
       <ul class="nav-links" @can('is_admin') style="display:flex; flex:0 0 25%; justify-content: space-between;"
   @endcan() style="display:flex;">
         <div class="coluna1">
-          <li><a href="/"><img src="../logo.png" style="max-width:75px;"></a></li>
+          <li><a href="/"><img src="{{ asset('logo.png') }}" style="max-width:75px;"></a></li>
           @if(!auth()->check())
         <li><a class="a-links" href="/login">Logar</a></li>
         <li><a class="a-links" href="/cadastrar">Criar Conta</a></li>
