@@ -6,7 +6,7 @@
     <div class="col-md-8">
       <div class="card">
         <div class="card-body">
-          <form method="post" action="/produto" class="form-group">
+          <form method="post" action="/produto" class="form-group" enctype="multipart/form-data">
             @include('prod.partials.form')
           </form>
       </div>

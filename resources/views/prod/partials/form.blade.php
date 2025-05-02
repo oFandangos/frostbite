@@ -25,6 +25,23 @@
     </select>
     <label for="category_id">Categoria</label>
 </div>
+
+<div class="form-floating-group">
+    <input type="file" class="file" name="file">
+</div>
+
 <button type="submit" class="comprar" style="width:100%; padding:10px; margin-top:10px;">
     {{ $produto->id ? 'Editar' : 'Cadastrar' }}
 </button>
+
+<style>
+    input[type="file"]::file-selector-button{
+        justify-content: center;
+        background: rgb(190, 190, 190) !important;
+        background: linear-gradient(45deg, rgba(150, 150, 150) 0%, rgba(200, 200, 200) 50%, rgba(220, 220, 220) 100%) !important;
+        border-radius: 2px;
+        padding: 10px;
+        color: white !important;
+        border: none;
+    }
+</style>

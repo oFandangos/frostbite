@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row justify-content-center" style="margin-top:20px;">
-        <div class="col-10">
+        <div class="col-12">
             @if(auth()->check())
             <div class="card">
                 <div class="card-body">
@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-10" style="margin-top:20px;">
+        <div class="col-12" style="margin-top:20px;">
             <div class="card">
                 <div class="card-body">
                     <h4><b>Comentários de usuários</b></h4>

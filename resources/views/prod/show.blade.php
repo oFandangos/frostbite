@@ -7,7 +7,9 @@
         <div class="col-8">
             <div class="card">
                 <div class="card-body">
-                    <img src="/front.png" style="width:100%;">
+                     @foreach($produto->files as $file)
+                     <img src="/files/{{ $file->id }}" style="width:100%; height:100%;">
+                     @endforeach
                 </div>
             </div>
         </div>
@@ -16,10 +18,6 @@
                 <div class="card-body">
                     <h2 class="text-center">Informações sobre o produto</h2>
                     <hr />
-                    @foreach($produto->files as $file)
-                        <img style="width:100%;" src="/files/{{$file->id}}">
-                    @endforeach
-                
                     <p>Nome: {{$produto->nome_prod}}</p>
                     <p>Categoria: {{$produto->category->nome_cat}}</p>
                     <p>Autor: <a href="">{{$user->email ?? 'N/A'}}</a></p>

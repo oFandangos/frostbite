@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\File;
 use Illuminate\Http\Request;
 use App\Models\Produto;
 use App\Models\Comentario;
@@ -34,8 +35,14 @@ class ProdutoController extends Controller
     }
 
     public function store(ProdutoRequest $request){
+        
         $validated = $request->validated();
         $produto = Produto::create($validated);
+        $file = new File;
+        $file->produto_id = $produto->id;
+        $file->original_name = $request->file('file')->getClientOriginalName();
+        $file->path = $request->file('file')->store('.');
+        $file->save();
         return redirect("/produto/show/{$produto->id}")->with('success',"Produto criado com sucesso!" );
     }
 

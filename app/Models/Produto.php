@@ -11,14 +11,7 @@ use App\Models\Comentario;
 class Produto extends Model
 {
     use HasFactory;
-
-    protected $fillable = [
-        'nome_prod',
-        'valor_prod',
-        'category_id',
-        'user_id'
-     ];
-      
+    protected $guarded = [];
 
      public function category(){
         return $this->belongsTo('App\Models\Category');
