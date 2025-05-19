@@ -9,6 +9,8 @@ class File extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     public function produtos(){
         return $this->belongsTo('App\Models\Produto');
     }

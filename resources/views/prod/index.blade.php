@@ -13,9 +13,11 @@
                     <div class="card">
                         <div class="card-body">
                             <a href="/produto/show/{{ $produto->id }}">
+                                <img 
                                 @foreach ($produto->files as $file)
-                                    <img src="/files/{{ $file->id }}" class="card-img-top" alt="...">
+                                    src="/files/{{ $file->id }}" class="card-img-top" alt="..."
                                 @endforeach
+                                >
                             </a>
                             <div class="card-title">Título: {{ $produto->nome_prod }}</div>
                             <div class="card-title">Valor: R$ {{ $produto->valor_prod }},00</div>

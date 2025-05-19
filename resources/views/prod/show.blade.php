@@ -7,9 +7,11 @@
         <div class="col-8">
             <div class="card">
                 <div class="card-body">
+                    <img 
                      @foreach($produto->files as $file)
-                     <img src="/files/{{ $file->id }}" style="width:100%; height:100%;">
+                     src="/files/{{ $file->id }}" style="width:100%; height:100%;"
                      @endforeach
+                     >
                 </div>
             </div>
         </div>

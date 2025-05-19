@@ -27,7 +27,7 @@ class ProdutoRequest extends FormRequest
             'category_id' => ['required', Rule::in(\App\Models\Category::categories()->pluck('id')->toArray())],
             'user_id' => ['required','integer'],
             'status' => ['nullable'],
-            'valor_prod' => ['integer','required']
+            'valor_prod' => ['integer','required'],
         ];    
         return $rules;
     }
@@ -35,7 +35,7 @@ class ProdutoRequest extends FormRequest
     protected function prepareForValidation(){
         $this->merge([
             'user_id' => auth()->user()->id,
-            // 'status' => 'em_analise',
+            'status' => 'aprovado',
         ]);
     }
 

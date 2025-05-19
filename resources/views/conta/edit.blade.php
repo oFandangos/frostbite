@@ -13,7 +13,7 @@
                         <h4>{{ Auth::user()->name }}</h4>
                         <hr/>
                         <div class="form-floating-group">
-                            <input class="input" name="nome" placeholder=" " value="{{ old('name', $user->name) }}">
+                            <input class="input" name="name" placeholder=" " value="{{ old('name', $user->name) }}">
                             <label for="name">Nome</label>
                         </div>
                         <div class="form-floating-group">
@@ -34,6 +34,7 @@
                             <label for="password_confirmation">Confirme sua senha</label>
                             <i class="fas fa-eye" onClick="showPasswordConfirmation()" id="eye2"></i>
                         </div>
+                        <button type="submit" class="comprar">Alterar</button>
                     </div>
                     <a href="/conta/" class="btn btn-primary"><i class="fas fa-arrow-left"></i></a>
                 </div>

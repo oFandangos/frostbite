@@ -27,7 +27,7 @@
 </div>
 
 <div class="form-floating-group">
-    <input type="file" class="file" name="file">
+    <input type="file" class="file" name="arquivo">
 </div>
 
 <button type="submit" class="comprar" style="width:100%; padding:10px; margin-top:10px;">

@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\User;
 use App\Http\Requests\ProdutoRequest;
 use App\Http\Requests\CategoryController;
+use App\Http\Requests\FileRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -61,15 +62,16 @@ class ProdutoController extends Controller
         return view('prod.create')->with(['produto' => $produto, 'categories' => $categories, 'users' => $users, 'userId' => $userId]);
     }
 
-    public function store(ProdutoRequest $request){
+    public function store(ProdutoRequest $request, FileRequest $fileRequest){
         
         $validated = $request->validated();
         $produto = Produto::create($validated);
-        $file = new File;
-        $file->produto_id = $produto->id;
-        $file->original_name = $request->file('file')->getClientOriginalName();
-        $file->path = $request->file('file')->store('.');
-        $file->save();
+
+        $validatedFile = $fileRequest->validated();
+        $validatedFile['produto_id'] = $produto->id;
+        $validatedFile['original_name'] = $request->file('arquivo')->getClientOriginalName();
+        $validatedFile['path'] = $request->file('arquivo')->store('.');
+        $file = File::create($validatedFile);
         return redirect("/produto/show/{$produto->id}")->with('success',"Produto criado com sucesso!" );
     }
 

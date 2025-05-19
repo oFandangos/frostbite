@@ -170,7 +170,6 @@ li {
     height: 400px;
     background-size: cover;
     background-position: center;
-    /*background-image: url('../back.png');*/
     transform: scaleX(1);
     transition: .4s;
 }
@@ -180,7 +179,6 @@ li {
     transform:scaleX(1.1) scaleY(1.1);
     background-size: cover;
     background-position: center;
-    /*background-image:url('../front.png');*/
 }
 
 .search {
