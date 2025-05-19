@@ -26,8 +26,16 @@ header {
 }
 
 #teste{
-    padding:10px; 
+    padding:10px;
     width:80%; 
+    border:0; 
+    outline:none; 
+    border-radius:5px;
+}
+
+#input_search{
+    padding:10px;
+    width:30%;
     border:0; 
     outline:none; 
     border-radius:5px;
@@ -157,12 +165,12 @@ li {
     width:100% !important;
     z-index:1000 !important;
 }
-
+/*remover*/
 .card-img-top {
     height: 400px;
     background-size: cover;
     background-position: center;
-    background-image: url('../back.png');
+    /*background-image: url('../back.png');*/
     transform: scaleX(1);
     transition: .4s;
 }
@@ -172,7 +180,7 @@ li {
     transform:scaleX(1.1) scaleY(1.1);
     background-size: cover;
     background-position: center;
-    background-image:url('../front.png');
+    /*background-image:url('../front.png');*/
 }
 
 .search {

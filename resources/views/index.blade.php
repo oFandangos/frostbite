@@ -6,8 +6,11 @@
     <div class="col-md-12" style="background-color:black; position:relative;">
       <div class="banner"></div>
       <div id="searchbar-container">
-      <input name="teste" value="{{ old('teste') }}" type="text" id="teste" placeholder="Pesquisar...">
-      <button name="botao" class="search"><i class="fas fa-search" style="color:white; font-size:25px;"></i></button>
+        <form method="get" action="/produtos/list">
+          @csrf
+          <input name="search" value="{{ old('search') }}" type="text" id="teste" placeholder="Pesquisar...">
+          <button class="search"><i class="fas fa-search" style="color:white; font-size:25px;"></i></button>
+        </form>
       </div>
     </div>
     </div>
@@ -20,7 +23,11 @@
     <div class="col-lg-3" id="col">
       <div class="card">
       <div class="card-body">
-      <a href="/produto/show/{{ $produto->id }}"><div class="card-img-top"></div></a>
+      <a href="/produto/show/{{ $produto->id }}">
+        @foreach ($produto->files as $file)
+          <img src="/files/{{ $file->id }}" class="card-img-top" alt="{{ $produto->nome_prod }}">
+        @endforeach
+      </a>
       <div class="card-title">Título: {{ $produto->nome_prod  }}</div>
       <div class="card-title">Valor: R$ {{ $produto->valor_prod }},00</div>
       <a href="/produto/show/{{ $produto->id }}" class="comprar">Comprar</a>
