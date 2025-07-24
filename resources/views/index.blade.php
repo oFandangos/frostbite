@@ -24,11 +24,16 @@
       <div class="card">
       <div class="card-body">
       <a href="/produto/show/{{ $produto->id }}">
-        <img 
-        @foreach ($produto->files as $file)
-          src="/files/{{ $file->id }}" class="card-img-top" alt="{{ $produto->nome_prod }}
-          @endforeach
-        ">
+        <div class="card-img-top-wrapper">
+          @if($produto->files->count() > 0)
+            <img src="/files/{{ $produto->files[0]->id }}" class="card-img-top img-normal">
+          @endif
+          @if($produto->files->count() > 1)
+            <img src="/files/{{ $produto->files[1]->id }}" class="card-img-top img-hover">
+          @else
+            <img src="/files/{{ $produto->files[0]->id }}" class="card-img-top img-hover">
+          @endif
+        </div>
       </a>
       <div class="card-title">Título: {{ $produto->nome_prod  }}</div>
       <div class="card-title">Valor: R$ {{ $produto->valor_prod }},00</div>
